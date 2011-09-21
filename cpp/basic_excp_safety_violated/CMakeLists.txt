@@ -1,4 +1,0 @@
-cmake_minimum_required(VERSION 2.8)
-project(basic_excp_safety_violated)
-add_executable(basic_excp_safety_violated basic_excp_safety_violated.cpp)
-

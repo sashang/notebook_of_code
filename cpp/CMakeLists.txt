@@ -1,3 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 project(cpp_notebook)
-add_subdirectory(countdays)
+add_executable(countdays countdays/CountDays.cpp)
+add_executable(address_of_array address_of_array/address_of_array.cpp)
+add_executable(boost_datetime_test boost_datetime_test/boost_datetime_test.cpp)
+add_executable(basic_excp_safety_violated basic_excp_safety_violated/basic_excp_safety_violated.cpp)
