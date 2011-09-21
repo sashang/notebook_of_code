@@ -1,0 +1,3 @@
+Program that evaluates the number of days from a fixed date to a given date at
+compile time using template metaprogramming.
+
