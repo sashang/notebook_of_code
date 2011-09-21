@@ -1,1 +1,9 @@
-My notebook of code samples.
+My notebook of code samples. Use CMake to build.
+
+Example
+-------
+mkdir build
+cd build
+cmake <path to root dir or repository>
+make
+
