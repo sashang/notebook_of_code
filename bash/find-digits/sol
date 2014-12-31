@@ -1,0 +1,21 @@
+#!/bin/bash
+let count=0
+while read line; do
+    #first line is the count
+    if [[ $count == 0 ]]; then
+        let count=$line
+    else
+        let string_length=${#line}
+        let div_count=0
+        for (( i=0; i < $string_length; i++ )); do
+            digit=${line:$i:1}
+            if [[ $digit != 0 ]]; then
+                rem=$(($line%$digit))
+                if [[ $rem == 0 ]]; then
+                    let div_count=$(($div_count + 1))
+                fi
+            fi
+        done
+        echo $div_count
+    fi
+done < /proc/$$/fd/0
