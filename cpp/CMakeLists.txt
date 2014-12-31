@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 project(cpp_notebook)
+set(CMAKE_CXX_FLAGS "-std=c++11")
 add_executable(countdays countdays/CountDays.cpp)
 add_executable(address_of_array address_of_array/address_of_array.cpp)
 add_executable(boost_datetime_test boost_datetime_test/boost_datetime_test.cpp)
@@ -7,3 +8,4 @@ add_executable(basic_excp_safety_violated basic_excp_safety_violated/basic_excp_
 add_executable(boost_format_test boost_format_test/boost_format_test.cpp)
 add_executable(silly_recursive_ptr silly_recursive_ptr/silly_recursive_ptr.cpp)
 add_executable(mergesort mergesort/mergesort.cpp)
+add_executable(lpf project-euler/3/lpf.cpp)
