@@ -28,6 +28,61 @@ void gen_target(queue<long>& target, int range_min, int range_max)
     }
 }
 
+void generate_within_range(vector<long>& numbers, int range_min, int range_max, set<int>& generated)
+{
+    int i,j;
+    uint32_t size = numbers.size()/2;
+    for (i = 0; i < size; i++)
+    {
+        j = numbers.size() - 1;
+        long sum = numbers[i] + numbers[j];
+        if (sum <= range_max && sum >= range_min)
+        {
+            if (generated.find(sum) != generated.end())
+            {
+                cout << numbers[i] << " + " << numbers[j] << endl;
+                generated.insert(sum);
+            }
+        }
+        while (sum > range_max || sum < range_min)
+        {
+            j--;
+            if (i == j)
+            {
+                break;
+            }
+            sum = numbers[i] + numbers[j];
+            if (sum <= range_max && sum >= range_min)
+            {
+                if (generated.find(sum) != generated.end())
+                {
+                    cout << numbers[i] << " + " << numbers[j] << endl;
+                    generated.insert(sum);
+                    break;
+                }
+                else
+                {
+                    while (sum <= range_max && sum >= range_min)
+                    {
+                        j--;
+                        if (i == j)
+                        {
+                            break;
+                        }
+                        sum = numbers[i] + numbers[j];
+                        if (generated.find(sum) != generated.end())
+                        {
+                            cout << numbers[i] << " + " << numbers[j] << endl;
+                            generated.insert(sum);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 int count_two_sums(multiset<long>& numbers, queue<long>& target)
 {
     //find starting indices i and j
@@ -75,6 +130,7 @@ int main(int argc, char* argv[])
 {
     multiset<long> numbers;
     queue<long> target;
+    vector<long> n2;
     if (argc < 4)
     {
         printf("Usage: ./two-sum <filename> range-min range-max\n");
@@ -95,8 +151,12 @@ int main(int argc, char* argv[])
         stringstream ss(line);
         ss >> u;
         numbers.insert(u);
+        n2.push_back(u);
     }
     gen_target(target, range_min, range_max);
     int result = count_two_sums(numbers, target);
+    //set<int> generated;
+    //generate_within_range(n2, range_min, range_max, generated);
+    //cout << "result: " << generated.size() << endl;
     cout << "result: " << result << endl;
 }
