@@ -1,0 +1,19 @@
+You have to collect gold from a cave. The cave has chambers. The cave is reprensented by a grid of
+integers. A 1 means that the chanber is empty and you can move into it. A 0 means that chamber has
+collapsed and you can't move into it. A number > 1 means there is x amount of gold there that takes
+x seconds to collect. You can't traverse a cave with gold in it until it's emptied. When emptied
+that chamber is now represented with a 1. You have to collect the gold starting with the chamber
+with the least gold. Calculate the shortest time to empty all gold from the cave.
+
+For example, given a grid:
+[1,1,0,2]
+[3,1,1,1]
+
+Therefore you have to gather in order (0,3) then (1,0)
+Path to 2 at (0,3) is (0,0) (0,1) (1,1), (1,2), (1,3), (0,3) which is 5 seconds.
+Therefore the time to gather from (0,3) and walk to chamber is 5 + 2 = 7. 
+Path to 3 at (1,0) is 
+(0,0) (1,0) which is 1 second.
+Time to gather and walk to chamber is 3 + 1 = 4.
+Total time is 4+7 = 13.
+
