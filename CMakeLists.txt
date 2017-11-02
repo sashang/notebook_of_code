@@ -3,5 +3,7 @@ project(notebook)
 add_subdirectory(cpp)
 add_subdirectory(cave-of-gold)
 add_subdirectory(unconnected-comps)
+add_subdirectory(rev-linked-list)
+add_subdirectory(lru-cache)
 add_subdirectory(cracking-the-coding-interview)
 
