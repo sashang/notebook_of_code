@@ -7,5 +7,6 @@ add_subdirectory(rev-linked-list)
 add_subdirectory(lru-cache)
 add_subdirectory(rem-dup-string)
 add_subdirectory(rem-whitespace-string)
+add_subdirectory(median-tracking)
 add_subdirectory(cracking-the-coding-interview)
 
