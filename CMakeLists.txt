@@ -10,5 +10,6 @@ add_subdirectory(rem-whitespace-string)
 add_subdirectory(median-tracking)
 add_subdirectory(spiral-ordering)
 add_subdirectory(cracking-the-coding-interview)
+add_subdirectory(edit-distance)
 add_subdirectory(step-combo)
 
