@@ -1,8 +1,30 @@
 #include <iostream>
 #include <set>
 #include <string>
+#include <unordered_map>
 
 using namespace std;
+
+void rem_dup_string2(string& s)
+{
+    //remove duplicate chars from the input string.
+    //using a hash table
+    unordered_map<char, uint32_t> table;
+    for (string::iterator it = s.begin(); it != s.end();)
+    {
+        if (table.find(*it) == table.end())
+        {
+            //char not in table
+            table[*it] = 1;
+            ++it;
+        }
+        else
+        {
+            //char already in table so remove from string
+            it = s.erase(it);
+        }
+    }
+}
 
 int main(int argc, char** argv)
 {
@@ -26,4 +48,7 @@ int main(int argc, char** argv)
         }
     }
     cout << s << endl;
+    string s1("apples and bananas");
+    rem_dup_string2(s1);
+    cout << s1 << endl;
 }
