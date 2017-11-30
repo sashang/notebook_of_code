@@ -71,7 +71,7 @@ int main(int argc, char** argv)
     string s1("apples and bananas");
     rem_dup_string2(s1);
     cout << s1 << endl;
-    s1 = "the masters of the universe";
+    s1 = "strawberry and banana";
     rem_dup_string_set(s1);
     cout << s1 << endl;
 }
