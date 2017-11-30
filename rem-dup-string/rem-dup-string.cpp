@@ -2,6 +2,7 @@
 #include <set>
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
 
 using namespace std;
 
@@ -21,6 +22,25 @@ void rem_dup_string2(string& s)
         else
         {
             //char already in table so remove from string
+            it = s.erase(it);
+        }
+    }
+}
+
+//remove duplicated chars using a set
+void rem_dup_string_set(string& s)
+{
+    unordered_set<char> table;
+    for (string::iterator it = s.begin(); it != s.end();)
+    {
+        if (table.find(*it) == table.end())
+        {
+            table.insert(*it);
+            ++it;
+        }
+        else
+        {
+            //it is in the table
             it = s.erase(it);
         }
     }
@@ -50,5 +70,8 @@ int main(int argc, char** argv)
     cout << s << endl;
     string s1("apples and bananas");
     rem_dup_string2(s1);
+    cout << s1 << endl;
+    s1 = "the masters of the universe";
+    rem_dup_string_set(s1);
     cout << s1 << endl;
 }
