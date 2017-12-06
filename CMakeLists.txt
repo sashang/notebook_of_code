@@ -13,4 +13,5 @@ add_subdirectory(cracking-the-coding-interview)
 add_subdirectory(edit-distance)
 add_subdirectory(step-combo)
 add_subdirectory(count-bits)
+add_subdirectory(count-strings)
 
