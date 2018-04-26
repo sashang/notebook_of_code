@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <list>
 #include <memory>
+#include <utility>
 
 using namespace std;
 
@@ -12,8 +13,8 @@ class LRUCache
 
         //order in this list represents the usage order. head is the most recently used, head - 1 is the 2nd
         //last used ... tail is the least recently used.
-        list<int> _cache;
-        map<int, int> _map;
+        list<int> _lru_list; //list contains the keys
+        map<int, pair<list<int>::iterator, int>> _cache; //contains the key mapping to the list iterator and it's value
         unsigned _capacity;
 
     public:
@@ -24,50 +25,38 @@ class LRUCache
 
         int get(int key)
         {
-            auto it_key_val = _map.find(key);
-            if (it_key_val == _map.end())
+            auto it_key_val = _cache.find(key);
+            if (it_key_val == _cache.end())
             {
                 //can't find the key so return -1
                 return -1;
             }
-
-            //in this case  it's in the map, so the key should be in the list
-            auto it = find(_cache.begin(), _cache.end(), key);
-            if (it != _cache.end())
-            {
-                _cache.erase(it);
-                _cache.emplace_back(key);
-            }
-            return it_key_val->second;
+            return it_key_val->second.second;
         }
 
         void put(int key, int val)
         {
-            auto it_key_val = _map.find(key);
-            if (it_key_val != _map.end())
+            auto it_key_val = _cache.find(key);
+            if (it_key_val != _cache.end())
             {
-                //key already exists so remove the existing key from the list.
-                auto it = find(_cache.begin(), _cache.end(), key);
-                _cache.erase(it);
-                //insert it with the new value
-                _map[key] = val;
-                //place the key at the back.
-                _cache.emplace_back(key);
+                //key already exists so move it to the front
+                _lru_list.erase(it_key_val->second.first);
+                _lru_list.emplace_front(key);
+                _cache[key].second = val;
+                it_key_val->second.first = _lru_list.begin();
             }
             else
             {
-                while (_capacity <= _cache.size())
+                while (_capacity <= _lru_list.size())
                 {
-                    //evict least recently used. This is the item at the beginning of the list.
-                    int key_to_erase = _cache.front();
-                    _cache.pop_front();
-                    _map.erase(key_to_erase);
+                    //evict least recently used.
+                    _cache.erase(_lru_list.back());
+                    _lru_list.pop_back();
                 }
-                auto it_key_val = _map.find(key);
+                //place the key at front
+                _lru_list.push_front(key);
                 //key not in map so insert it with the new value
-                _map[key] = val;
-                //place the key at the back.
-                _cache.emplace_back(key);
+                _cache[key] = {_lru_list.begin(), val};
             }
         }
 
@@ -76,7 +65,7 @@ class LRUCache
             for (auto item : _cache)
             {
                 //cout << "(key = " << item.first << " val = " << item.second << ") ";
-                cout << "key = " << item;
+                cout << "key = " << item.first << " val = " << item.second.second << endl;
             }
             cout << endl;
         }
