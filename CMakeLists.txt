@@ -18,4 +18,5 @@ add_subdirectory(step-combo)
 add_subdirectory(count-bits)
 add_subdirectory(count-strings)
 add_subdirectory(powfunction)
+add_subdirectory(binary-tree-verification)
 
