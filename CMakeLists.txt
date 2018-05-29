@@ -19,4 +19,6 @@ add_subdirectory(count-bits)
 add_subdirectory(count-strings)
 add_subdirectory(powfunction)
 add_subdirectory(binary-tree-verification)
+add_subdirectory(powerset)
+add_subdirectory(rec-atoi)
 
