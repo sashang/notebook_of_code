@@ -8,38 +8,38 @@ using namespace std;
 class BinaryTreeNode
 {
 public:
-	int value;
-	BinaryTreeNode* left;
-	BinaryTreeNode* right;
+    int value;
+    BinaryTreeNode* left;
+    BinaryTreeNode* right;
 
-	BinaryTreeNode(int value) :
-		value(value),
-		left(nullptr),
-		right(nullptr)
-	{
-	}
+    BinaryTreeNode(int value) :
+        value(value),
+        left(nullptr),
+        right(nullptr)
+    {
+    }
 
-	~BinaryTreeNode()
-	{
-		delete left;
-		delete right;
-	}
+    ~BinaryTreeNode()
+    {
+        delete left;
+        delete right;
+    }
 
-	BinaryTreeNode * insertLeft(int value)
-	{
-		this->left = new BinaryTreeNode(value);
-		return this->left;
-	}
+    BinaryTreeNode * insertLeft(int value)
+    {
+        this->left = new BinaryTreeNode(value);
+        return this->left;
+    }
 
-	BinaryTreeNode * insertRight(int value)
-	{
-		this->right = new BinaryTreeNode(value);
-		return this->right;
-	}
+    BinaryTreeNode * insertRight(int value)
+    {
+        this->right = new BinaryTreeNode(value);
+        return this->right;
+    }
 
-	int get_val() const { return value; }
-	BinaryTreeNode* get_left() const { return left;  }
-	BinaryTreeNode* get_right() const { return right; }
+    int get_val() const { return value; }
+    BinaryTreeNode* get_left() const { return left;  }
+    BinaryTreeNode* get_right() const { return right; }
 };
 
 class NodeBound
@@ -56,8 +56,8 @@ class NodeBound
 
 bool is_valid(const BinaryTreeNode* root)
 {
-	if (root == nullptr)
-		return true;
+    if (root == nullptr)
+        return true;
 
     stack<NodeBound> s;
     NodeBound root_bound(root, std::numeric_limits<int>::max(), std::numeric_limits<int>::min());
@@ -90,19 +90,19 @@ bool is_valid(const BinaryTreeNode* root)
 
 int main()
 {
-	BinaryTreeNode* root = new BinaryTreeNode(10);
-	BinaryTreeNode* right = root->insertRight(11);
-	BinaryTreeNode* left = root->insertLeft(2);
+    BinaryTreeNode* root = new BinaryTreeNode(10);
+    BinaryTreeNode* right = root->insertRight(10);
+    BinaryTreeNode* left = root->insertLeft(2);
 
     right->insertRight(20);
-    right->insertLeft(-1);
+    right->insertLeft(8);
 
 
-	if (is_valid(root))
-		cout << "valid" << endl;
-	else
-		cout << "not valid" << endl;
-	cin.get();
+    if (is_valid(root))
+        cout << "valid" << endl;
+    else
+        cout << "not valid" << endl;
+    cin.get();
 
     return 0;
 }
