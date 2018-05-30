@@ -21,4 +21,5 @@ add_subdirectory(powfunction)
 add_subdirectory(binary-tree-verification)
 add_subdirectory(powerset)
 add_subdirectory(rec-atoi)
+add_subdirectory(min-cost-path)
 
