@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_CXX_FLAGS "-std=c++11")
 project(notebook)
 add_subdirectory(cpp)
 add_subdirectory(cave-of-gold)
@@ -23,5 +24,4 @@ add_subdirectory(powerset)
 add_subdirectory(rec-atoi)
 add_subdirectory(min-cost-path)
 add_subdirectory(preorder-traversal-no-rec)
-
-
+add_subdirectory(word-cloud)
