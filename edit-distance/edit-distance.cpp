@@ -15,7 +15,7 @@ int min_dist(string word1, string word2) {
 
     if (word1[0] == word2[0])
     {
-        arr[0][0] = 0;            
+        arr[0][0] = 0;
     }
     else
     {
@@ -35,7 +35,7 @@ int min_dist(string word1, string word2) {
         if (word1[0] == word2[j])
             arr[0][j] = arr[0][j-1];
         else
-            arr[0][j] = arr[0][j-1] + 1;            
+            arr[0][j] = arr[0][j-1] + 1;
     }
 
     for (int i = 1; i < word1.size(); i++)
