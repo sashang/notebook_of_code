@@ -25,19 +25,26 @@ double fast_pow(double x, int n)
 
     if (n == 0) return 1;
     if (n == 1) return x;
+    int expo = n;
     if (n < 0)
     {
-        n = -n;
+        expo = -n;
     }
     if (n % 2 == 0)
     {
-        double temp = fast_pow(x, n/2);
-        return 1.0/(temp * temp);
+        double temp = fast_pow(x, expo/2);
+        if (n < 0)
+            return 1.0/(temp * temp);
+        else
+            return (temp * temp);
     }
     else
     {
-        double temp = fast_pow(x, n/2);
-        return 1.0/(x * temp * temp);
+        double temp = fast_pow(x, expo/2);
+        if (n < 0)
+            return 1.0/(x * temp * temp);
+        else
+            return (x * temp * temp);
     }
 }
 
@@ -48,4 +55,5 @@ int main(int argc, char** argv)
     cout << fast_pow(2,5) << endl;
     cout << fast_pow(2,-2) << endl;
     cout << fast_pow(2,-3) << endl;
+    cout << fast_pow(3,4) << endl;
 }
