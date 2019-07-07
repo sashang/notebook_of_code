@@ -2,6 +2,8 @@
 #include <vector>
 #include <unordered_map>
 #include <queue>
+#include <iterator>
+#include <algorithm>
 
 using namespace std;
 
@@ -48,7 +50,7 @@ vector<vector<int>> build_sequence(int start, int hops)
 {
     if (hops == 0)
         return {{start}};
-
+ 
     vector<vector<int>> new_seq;
     for (auto next : neighbours[start])
     {
@@ -62,18 +64,53 @@ vector<vector<int>> build_sequence(int start, int hops)
     return new_seq;
 }
 
+void print_seq(const vector<vector<int>>& seq)
+{
+    for_each(seq.begin(), seq.end(), 
+        [](const vector<int>& item)
+        {
+            copy(item.begin(), item.end(), ostream_iterator<int>(cout, " "));
+            cout<<endl;
+        });
+}
+
+uint32_t count_seq_dyn(int start, int hops)
+{
+    vector<int> prior(10, 1);
+    vector<int> current(10, 0);
+
+    if (hops < 1)
+        return 1;
+
+    while (hops)
+    {
+        current = vector<int>(10, 0);
+        for (vector<int>::size_type pos = 0; pos < current.size(); ++pos)
+        {
+            for (auto item : neighbours[pos])
+                current[pos] += prior[item];
+        }
+        prior = current;
+        hops--;
+    }
+    return current[start];
+}
+
 int main(int argc, char* argv[])
 {
-    cout << count_sequences(6, 2) << endl;
-    cout << count_sequences(5, 2) << endl;
-    auto seq = build_sequence(6, 2);
-    for (auto item1 : seq)
-    {
-        for (auto item2 : item1)
-        {
-            cout << item2 << " ";
-        }
-        cout << endl;
-    }
+
+    cout << "recursive: " << count_sequences(6, 1) << endl;
+    cout << "dyn: " << count_seq_dyn(6, 1) << endl;
+    auto seq = build_sequence(6, 1);
+    print_seq(seq);
+    cout << "rec: " << count_sequences(6, 2) << endl;
+    cout << "dyn: " <<  count_seq_dyn(6, 2) << endl;
+    seq = build_sequence(6, 2);
+    print_seq(seq);
+    cout << "rec: " << count_sequences(6, 5) << endl;
+    cout << "dyn: " <<  count_seq_dyn(6, 5) << endl;
+
+    cout << "rec: " << count_sequences(5, 1) << endl;
+    cout << "dyn: " <<  count_seq_dyn(5, 1) << endl;
     return 0;
 }
