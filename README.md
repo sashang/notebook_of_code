@@ -9,8 +9,7 @@ build.
 * Do the following:
 
 ```
-mkdir build
+cmake -B build
 cd build
-cmake ..
 make
 ```
