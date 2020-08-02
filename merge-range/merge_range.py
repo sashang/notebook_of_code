@@ -2,6 +2,9 @@ def makerangestr(low, high):
     return str(low) + "..." + str(high)
 
 def merge_range(arr):
+    if len(arr) == 1:
+        return arr
+
     left = 0
     right = 1
     cur = 0
@@ -18,4 +21,7 @@ def merge_range(arr):
     return merged
 
 arr = [0, 1, 2, 5, 7, 8, 9, 9, 10, 11, 15]
+print(merge_range(arr))
+
+arr = [0, 2, 7, 8, 9, 9, 10, 12, 15]
 print(merge_range(arr))
